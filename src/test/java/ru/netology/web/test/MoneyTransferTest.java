@@ -56,7 +56,7 @@ public class MoneyTransferTest  {
         var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
         transferPage.makeTransfer(String.valueOf(amount), secondCardInfo);
         assertAll(
-                () -> transferPage.findErrorMessage("Выполнена попытка перевода суммы, превышающей остаток на карте списания"),
+                () -> transferPage.findErrorMessage("Ошибка! Выполнена попытка перевода суммы, превышающей остаток на карте списания"),
                 () -> dashboardPage.reloadDashboardPage(),
                 () -> dashboardPage.checkCardBalance(firstCardInfo, firstCardBalance),
                 () -> dashboardPage.checkCardBalance(secondCardInfo, secondCardBalance)

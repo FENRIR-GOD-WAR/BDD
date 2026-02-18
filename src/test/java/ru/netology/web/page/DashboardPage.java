@@ -20,13 +20,13 @@ public class DashboardPage {
         heading.should(Condition.visible);
     }
 
-    private SelenideElement getCardElement(DataHelper.CardInfo cardInfo){
+    private SelenideElement getCardElement(DataHelper.CardInfo cardInfo) {
         return cards.find(Condition.attribute("data-test-id", cardInfo.getTestId()));
     }
 
-    public int getCardBalance(DataHelper.CardInfo cardInfo){
-       var text = getCardElement(cardInfo).getText();
-       return extractBalance(text);
+    public int getCardBalance(DataHelper.CardInfo cardInfo) {
+        var text = getCardElement(cardInfo).getText();
+        return extractBalance(text);
     }
 
     public int getCardBalance(int index) {
@@ -34,12 +34,12 @@ public class DashboardPage {
         return extractBalance(text);
     }
 
-    public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo){
-        getCardElement(cardInfo). $("[data-test-id=action-deposit]").click();
+    public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
+        getCardElement(cardInfo).$("[data-test-id=action-deposit]").click();
         return new TransferPage();
     }
 
-    public void reloadDashboardPage(){
+    public void reloadDashboardPage() {
         reloadButton.click();
         heading.shouldBe(Condition.visible);
     }
@@ -51,7 +51,7 @@ public class DashboardPage {
         return Integer.parseInt(value);
     }
 
-    public void checkCardBalance(DataHelper.CardInfo cardInfo, int expectedBalance){
+    public void checkCardBalance(DataHelper.CardInfo cardInfo, int expectedBalance) {
         getCardElement(cardInfo).should(Condition.visible).should(Condition.text(balanceStart + expectedBalance + balanceFinish));
     }
 
